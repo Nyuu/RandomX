@@ -140,6 +140,9 @@ endif()
 
 # PowerPC
 if(ARCH_ID STREQUAL "ppc64" OR ARCH_ID STREQUAL "ppc64le")
+    list(APPEND randomx_sources
+        src/jit_compiler_ppc64le_static.S
+        src/jit_compiler_ppc64le.cpp )
   if(ARCH STREQUAL "native")
     add_flag("-mcpu=native")
   endif()
