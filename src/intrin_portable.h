@@ -42,6 +42,13 @@ constexpr int64_t unsigned64ToSigned2sCompl(uint64_t x) {
 constexpr uint64_t signExtend2sCompl(uint32_t x) {
 	return (-1 == ~0) ? (int64_t)(int32_t)(x) : (x > INT32_MAX ? (x | 0xffffffff00000000ULL) : (uint64_t)x);
 }
+//PBG-COMR-A
+//POSSIBLY not portable
+//POWER ISA v3.0b has values for Rounding modes in VSX as follows
+//  RoundToNearest  = 0
+//  RoundDown       = 3
+//  RoundUp         = 2
+//  RoundToZero     = 1
 
 constexpr int RoundToNearest = 0;
 constexpr int RoundDown = 1;
@@ -177,7 +184,7 @@ FORCE_INLINE uint32_t rx_get_rounding_mode() {
 	return (_mm_getcsr() >> 13) & 3;
 }
 
-#elif defined(__PPC64__) && defined(__ALTIVEC__) && defined(__VSX__) //sadly only POWER7 and newer will be able to use SIMD acceleration. Earlier processors cant use doubles or 64 bit integers with SIMD
+#elif defined(__PPC64__) && defined(__ALTIVEC__) && defined(__VSX__) //sadly only POWER7 and newer will be able to use SI MD acceleration. Earlier processors cant use doubles or 64 bit integers with SIMD
 #include <cstdint>
 #include <stdexcept>
 #include <cstdlib>
