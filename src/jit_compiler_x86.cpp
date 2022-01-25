@@ -835,5 +835,4 @@ namespace randomx {
 		INST_HANDLE(ISTORE)
 		INST_HANDLE(NOP)
 	};
-
 }

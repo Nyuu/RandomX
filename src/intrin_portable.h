@@ -42,13 +42,6 @@ constexpr int64_t unsigned64ToSigned2sCompl(uint64_t x) {
 constexpr uint64_t signExtend2sCompl(uint32_t x) {
 	return (-1 == ~0) ? (int64_t)(int32_t)(x) : (x > INT32_MAX ? (x | 0xffffffff00000000ULL) : (uint64_t)x);
 }
-//PBG-COMR-A
-//POSSIBLY not portable
-//POWER ISA v3.0b has values for Rounding modes in VSX as follows
-//  RoundToNearest  = 0
-//  RoundDown       = 3
-//  RoundUp         = 2
-//  RoundToZero     = 1
 
 constexpr int RoundToNearest = 0;
 constexpr int RoundDown = 1;
